@@ -1,17 +1,17 @@
 import { SwipeableDrawer } from '@material-ui/core';
-import React,{useState} from 'react'
-import TinderCard from 'react-tinder-card'
-import './TinderCards.css'
+import React,{useState} from 'react';
+import TinderCard from 'react-tinder-card';
+import './TinderCards.css';
 
 function TinderCards() {
     const [people,setPeople] = useState([
         {
             name: 'Elon Musk',
-            url: "https://en.wikipedia.org/wiki/Elon_Musk#/media/File:Elon_Musk_Royal_Society_(crop1).jpg"
+            url: "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg"
         },
         {
             name: 'Bill Gates',
-            url: "https://en.wikipedia.org/wiki/Bill_Gates#/media/File:Bill_Gates_2017_(cropped).jpg"
+            url: "https://upload.wikimedia.org/wikipedia/commons/a/a8/Bill_Gates_2017_%28cropped%29.jpg"
         },
 
     ]);
@@ -24,20 +24,24 @@ function TinderCards() {
     };
 
     return (
-        <div className="tinderCards">
-            <div className="tinderCards__cardContainer">
+        <div className = "tinderCards">
+            <div className = "tinderCards__cardContainer">
             {people.map((person) => (
                 <TinderCard
                     className = "swipe"
                     key = {person.name}
                     preventSwipe = {["up","down"]}
-                    onSwipe = {(dir) => SwipeableDrawer(dir,person.name)}
-                    onCardLeftScreen={() => outOfFrame(person.name)}
-
-                ></TinderCard>
-
+                    onSwipe = {(dir) => swiped(dir,person.name)}
+                    onCardLeftScreen = {() => outOfFrame(person.name)}
+                >
+                    <div
+                        style = {{ backgroundImage : `url(${person.url})`}}
+                        className = "card"
+                    >
+                        <h3>{person.name}</h3>
+                    </div>
+                </TinderCard>
                 ))}
-
             </div>
         </div>
     );

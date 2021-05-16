@@ -16,7 +16,7 @@ function Header() {
                alt="Logo"
             />
             <IconButton>
-               <ForumIcon  />
+               <ForumIcon fontSize="large" className="header__icon"  />
             </IconButton>
         </div>
     )
